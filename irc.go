@@ -448,7 +448,7 @@ func (irc *Connection) Connect(server string) error {
 // Create a connection with the (publicly visible) nickname and username.
 // The nickname is later used to address the user. Returns nil if nick
 // or user are empty.
-func IRC(nick, user string, Timeout, PingFreq int) *Connection {
+func IRC(nick, user string) *Connection {
 	// catch invalid values
 	if len(nick) == 0 {
 		return nil
@@ -465,8 +465,8 @@ func IRC(nick, user string, Timeout, PingFreq int) *Connection {
 		end:         make(chan struct{}),
 		Version:     VERSION,
 		KeepAlive:   4 * time.Minute,
-		Timeout:     Timeout * time.Minute,
-		PingFreq:    PingFreq * time.Minute,
+		Timeout:     1 * time.Minute,
+		PingFreq:    1 * time.Minute,
 		QuitMessage: "",
 	}
 	irc.setupCallbacks()
